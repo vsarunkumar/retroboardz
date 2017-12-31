@@ -1,0 +1,134 @@
+<div class="row">
+    <h2 class="board-title">{{board}}</h2>
+</div>
+
+<ng-container *ngFor= "let sectionDetail of sectionDetails">
+	<div class ="col-md-{{gridSize}}">
+		<div class="row" style="text-align: center">
+			<h3>{{sectionDetail[0]}}  <a type="button" id="myBtn"   (click) = "show_modal(sectionDetail[0], sectionDetail[1])"><i class="fa fa-plus-circle addSec" ></i></a></h3>
+
+		</div>
+        
+         <div *ngFor = "let messageDetail of sectionDetail[2]">
+            <ul class="notes">
+                <li>
+                    <div *ngIf="messageDetail[2]==1">
+                        <p data-toggle="modal" data-target="#editModal" data-sectionid="74" id="message-id-74" class="messageBox">{{messageDetail[0]}} </p>
+                        <i class="fa fa-thumbs-o-up" data-sectionid="74" (click) = "onAddVote(messageDetail[1])"></i><span class="like-count">{{messageDetail[3]}}</span><i class="fa fa-edit" (click) = "edit_msg_modal(messageDetail[0], messageDetail[1])" data-sectionid="74" id="message-id-74"></i><i class="fa fa-trash-o" data-sectionid="74" (click) = "onMessageDelete(messageDetail[1])"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+           
+	</div>
+</ng-container>
+
+
+<!-- Add Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div *ngIf="myForm.value.typeOfSubmit == 'Add'">
+                <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                </div>
+                <div *ngIf="myForm.value.typeOfSubmit == 'Edit'">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Message</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <div class="modal-body">
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="message-text" autofocus="" style="margin: 0 15px;width: 95%" formControlName="message"></textarea>
+                    </div>
+                    <input type="hidden" id="sectionName" formControlName="sectionName">
+                    <input type="hidden" id="sectionSeq" formControlName="sectionSeq">
+                    <input type="hidden" id="messageId" formControlName="messageId">
+                    <input type="hidden" id="boardId" formControlName="boardId">
+
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                <div *ngIf="myForm.value.typeOfSubmit == 'Add'">
+                    <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">SAVE</button>
+                </div>
+                <div *ngIf="myForm.value.typeOfSubmit == 'Edit'">
+                    <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">UPDATE</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end Add Modal -->
+
+
+<!-- Edit Modal -->
+<!--
+<div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form name="form-horizontal" class="form-horizontal" (ngSubmit)="onMessageEdit(form)" #form="ngForm">
+                <div class="modal-body">
+                
+                    <div class="form-group">
+                        <textarea class="form-control" id="message-text" autofocus="" style="margin: 0 15px;width: 95%" name="message" [ngModel]="msg"></textarea>
+                    </div>
+                    <input type="hidden" id="sectionName" value="">
+                    <input type="hidden" id="sectionId" value="">
+                    <input type="hidden" id="sectionSeq" value="">
+                    <input type="hidden" id="boardId" [ngModel]="boardId" name="boardId">
+                    <input type="hidden" id="messageId" value="messageId" name="messageId" [ngModel]="msgId">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" style="" id="add_message" onclick="add_message()">Save message</button>
+                    <button type="submit" class="btn btn-primary">Update message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>-->
+<!--end Edit Modal -->
+
+
+<!--
+<h2>Board</h2>
+
+<h1>{{ id }}</h1>
+
+
+<h3>{{ board }}</h3>
+
+<h1>{{a + 1}}</h1>  
+
+
+<button type="button" class="btn btn-default" (click)="openDeleteModal(1)">Open me!</button>
+ 
+<bs-modal #deleteProfile>
+    <bs-modal-header [showDismiss]="true">
+        <h4 class="modal-title">I'm a modal!</h4>
+    </bs-modal-header>
+    <bs-modal-body>
+        Hello World!
+    </bs-modal-body>
+    <bs-modal-footer [showDefaultButtons]="true"></bs-modal-footer>
+</bs-modal>
+
+
+
+
+<button>Click me:</button>
+
+-->
