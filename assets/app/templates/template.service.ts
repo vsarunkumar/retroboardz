@@ -12,7 +12,7 @@ export class TemplateService {
 	constructor(private http: Http) {}
 	getTemplateNames(){
 
-		return this.http.get('http://localhost:3000/template')
+		return this.http.get('https://retroboardz.herokuapp.com/template')
 							.map((response: Response) => {
 								const templates = response.json().obj;
 								let transformedTemplates: Template[] =[];
