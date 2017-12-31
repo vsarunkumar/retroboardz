@@ -17,14 +17,14 @@ export class RetroSectionService {
 
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post('http://localhost:3000/retrosection', body, { headers: headers })
+        return this.http.post('https://retroboardz.herokuapp.com/retrosection', body, { headers: headers })
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
 
     }
 
     getRetroSectionByBoard(id: String) {
-        return this.http.get('http://localhost:3000/retrosection/'+id)
+        return this.http.get('https://retroboardz.herokuapp.com/retrosection/'+id)
             .map((response: Response) => {
                 const rectrosections = response.json().obj;
                 let transformedRectrosections: RetroSection[] = [];
@@ -52,20 +52,20 @@ export class RetroSectionService {
 
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.patch('http://localhost:3000/retrosection', body, { headers: headers })
+        return this.http.patch('https://retroboardz.herokuapp.com/retrosection', body, { headers: headers })
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
 
     }
 
     deleteRetroSection(id: String) {
-        return this.http.delete('http://localhost:3000/retrosection/'+id)
+        return this.http.delete('https://retroboardz.herokuapp.com/retrosection/'+id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     addVote(id: String) {
-        return this.http.get('http://localhost:3000/retrosection/addVote/'+id)
+        return this.http.get('https://retroboardz.herokuapp.com/retrosection/addVote/'+id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

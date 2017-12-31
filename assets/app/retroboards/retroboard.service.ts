@@ -18,14 +18,14 @@ export class RetroboardService {
 
 		const headers = new Headers({'Content-Type': 'application/json'});
 
-		return this.http.post('http://localhost:3000/retroboard', body, { headers: headers })
+		return this.http.post('https://retroboardz.herokuapp.com/retroboard', body, { headers: headers })
 										.map((response: Response) => response.json())
 										.catch((error: Response) => Observable.throw(error.json()));
 	}
 
 	getboard(id: String) {
 
-		return this.http.get('http://localhost:3000/retroboard/'+id)
+		return this.http.get('https://retroboardz.herokuapp.com/retroboard/'+id)
 										.map((response: Response) => response.json())
 										.catch((error: Response) => Observable.throw(error.json()));
 
