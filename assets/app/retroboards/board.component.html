@@ -3,12 +3,10 @@
 </div>
 
 <ng-container *ngFor= "let sectionDetail of sectionDetails">
+<div class="row">
 	<div class ="col-md-{{gridSize}}">
-		<div class="row" style="text-align: center">
 			<h3>{{sectionDetail[0]}}  <a type="button" id="myBtn"   (click) = "show_modal(sectionDetail[0], sectionDetail[1])"><i class="fa fa-plus-circle addSec" ></i></a></h3>
-
-		</div>
-        
+       
          <div *ngFor = "let messageDetail of sectionDetail[2]">
             <ul class="notes">
                 <li>
@@ -19,9 +17,9 @@
                 </li>
             </ul>
         </div>
-
            
 	</div>
+</div>
 </ng-container>
 
 
